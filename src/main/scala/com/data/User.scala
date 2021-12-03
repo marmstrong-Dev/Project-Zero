@@ -6,6 +6,7 @@ class User (
              var userEmailAddress: String,
              var userPassword: String ) {
 
+  // Auxiliary Constructor Used For Login
   def this(userEmailAddress: String, userPassword: String) = {
     this("", "", userEmailAddress, userPassword)
   }
