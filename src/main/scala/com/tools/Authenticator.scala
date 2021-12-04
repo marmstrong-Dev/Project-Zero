@@ -21,7 +21,7 @@ object Authenticator {
     println("Please Confirm Password:")
     uInfo(0) = readLine()
 
-    var candidateUser = new User(uInfo(0),uInfo(1),uInfo(2),uInfo(3))
+    var candidateUser = new User(0, uInfo(0), uInfo(1), uInfo(2), uInfo(3))
   }
 
   def login(): Unit = {

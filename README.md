@@ -2,8 +2,8 @@
 ## Revature - Project Zero
 
 ### Overview
-
 This will be a tool to allow for the creation of employee records. It will also allow for modification of existing records and addition of notes.
+
 #### Options
 - Will allow for HR Login / Logout
 - Will allow an employee lookup.
@@ -18,5 +18,5 @@ This will be a tool to allow for the creation of employee records. It will also 
 
 ### Tech Stack Used
 - Scala 2.13.7
-- MongoDb
+- MySQL
 - sbt

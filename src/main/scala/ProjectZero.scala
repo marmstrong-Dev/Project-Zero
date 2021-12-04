@@ -1,4 +1,5 @@
 import scala.io._
+import com.data.DbCon._
 
 object ProjectZero {
   // Produces Welcome Banner and Project Info
@@ -25,7 +26,6 @@ object ProjectZero {
   }
 
   def main(args: Array[String]): Unit = {
-    welcome_screen()
-
+    open_connection()
   }
 }

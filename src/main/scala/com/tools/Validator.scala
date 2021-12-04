@@ -12,4 +12,14 @@ object Validator {
 
     return isValid
   }
+
+  def validate_email(email: String): Boolean = {
+    var isValid = true
+
+    if(!email.contains("@")) {
+      isValid = false
+    }
+
+    return isValid
+  }
 }
