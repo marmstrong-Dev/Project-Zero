@@ -23,4 +23,8 @@ class Employee (
   def edit_employee(): Unit = {
 
   }
+
+  def del_employee(): Unit = {
+
+  }
 }

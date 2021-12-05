@@ -1,13 +1,37 @@
+import com.data.User
 import scala.io._
-import com.data.DbCon._
+import com.tools.Authenticator.{login, logout, register}
 
 object ProjectZero {
+  var isLoggedIn = false
+  var loggedInUser = new User()
+
   // Produces Welcome Banner and Project Info
   def welcome_screen(): Unit = {
     println(s"${AnsiColor.BOLD}Welcome to HR Hero${AnsiColor.RESET}\n")
 
     for(i <- 0 to 20)
     {print("*")}
+
+    println("\nSign In or Create an Account\n1.) Login\n2.) New User")
+    val selection = StdIn.readLine()
+
+    if(selection == "1") {
+      loggedInUser = login()
+
+      if(loggedInUser.userId == 0) {
+        println("Invalid Login")
+      }
+      else {
+        isLoggedIn = true
+      }
+    }
+    else if(selection == "2") {
+      println("Register Method")
+    }
+    else {
+      println("Invalid Selection")
+    }
   }
 
   // Gets Menu Selection and Routes Accordingly
@@ -26,6 +50,10 @@ object ProjectZero {
   }
 
   def main(args: Array[String]): Unit = {
-    open_connection()
+    welcome_screen()
+
+    if(isLoggedIn) {
+      menu_selection()
+    }
   }
 }
