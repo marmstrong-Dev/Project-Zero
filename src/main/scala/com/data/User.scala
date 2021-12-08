@@ -42,6 +42,8 @@ class User (
       if(enteredPassword != this.userPassword) {
         this.userId = 0
       }
+
+      con.close()
     } catch {
       case e: SQLException => e.printStackTrace()
     }
@@ -75,7 +77,23 @@ class User (
   }
 
   def edit_user(): Unit = {
+    try {
+      val con: Connection = DriverManager.getConnection(dbUrl, username, password)
+      val statement = con.createStatement()
+      val lookupQuery = statement.executeUpdate(
+        s"""
+        UPDATE Users SET
+          user_first_name = "${this.userFirstName}",
+          user_last_name = "${this.userLastName}",
+          user_email_address = "${this.userEmailAddress}",
+          user_password = "${this.userPassword}"
+        WHERE user_id = ${this.userId};
+        """)
 
+      con.close()
+    } catch {
+      case e: SQLException => e.printStackTrace()
+    }
   }
 
   def del_user(): Unit = {

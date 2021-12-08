@@ -83,7 +83,23 @@ class Employee (
   }
 
   def edit_employee(): Unit = {
+    try {
+      val con: Connection = DriverManager.getConnection(dbUrl, username, password)
+      val statement = con.createStatement()
+      val modQuery = statement.executeUpdate(
+        s"""
+        UPDATE Employees SET
+          employee_first_name = "${this.employeeFirstName}",
+          employee_last_name = "${this.employeeLastName}",
+          employee_email_address = "${this.employeeEmailAddress}",
+          employee_phone_number = "${this.employeePhoneNum}"
+        WHERE employee_id = ${this.employeeId};
+        """)
 
+      con.close()
+    } catch {
+      case e:SQLException => e.printStackTrace()
+    }
   }
 
   def del_employee(): Unit = {

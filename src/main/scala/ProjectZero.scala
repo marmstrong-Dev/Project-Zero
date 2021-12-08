@@ -56,8 +56,8 @@ object ProjectZero {
     val router = selection match {
       case "1" => add_menu()
       case "2" => lookup_menu()
-      case "3" => edit_menu()
-      case "4" => welcome_screen()
+      case "3" => edit_menu(loggedInUser)
+      case "4" => logout()
       case _ => menu_selection()
     }
 
@@ -65,14 +65,13 @@ object ProjectZero {
   }
 
   def main(args: Array[String]): Unit = {
-    /*welcome_screen()
+    welcome_screen()
 
     if(isLoggedIn) {
       menu_selection()
     }
     else {
       welcome_screen()
-    }*/
-    lookup_menu()
+    }
   }
 }

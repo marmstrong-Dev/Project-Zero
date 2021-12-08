@@ -3,11 +3,16 @@ package com.tools
 object Validator {
   var errorMsg = ""
 
-  def check_for_match(s1: String, s2: String): Boolean = {
+  def check_password(s1: String, s2: String): Boolean = {
     var isValid = false
 
     if(s1 == s2) {
-      isValid = true
+      if(s1.length <= 8) {
+        isValid = true
+      }
+      else {
+        errorMsg = "Password Must Be At Least 8 Characters"
+      }
     }
     else {
       errorMsg = "Passwords Do Not Match"

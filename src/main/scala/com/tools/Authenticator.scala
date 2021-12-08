@@ -23,7 +23,7 @@ object Authenticator {
     println("Please Confirm Password:")
     uInfo(4) = readLine()
 
-    if(check_for_match(uInfo(3), uInfo(4)) && check_for_nulls(uInfo) && validate_email(uInfo(2))) {
+    if(check_password(uInfo(3), uInfo(4)) && check_for_nulls(uInfo) && validate_email(uInfo(2))) {
       var candidateUser = new User(0, uInfo(0), uInfo(1), uInfo(2), uInfo(3))
 
       candidateUser.add_user()
@@ -35,12 +35,12 @@ object Authenticator {
 
   // Authenticate User
   def login(): User = {
-    println("Please Log In\n")
+    println("\nPlease Log In\n")
 
     println("Enter Email Address")
-    var userName = readLine()
+    val userName = readLine()
     println("Enter Password")
-    var userPass = readLine()
+    val userPass = readLine()
 
     var loginCandidate = new User(userName, userPass)
     loginCandidate.lookup_user()
