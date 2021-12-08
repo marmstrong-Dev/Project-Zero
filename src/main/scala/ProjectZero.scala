@@ -1,6 +1,10 @@
 import com.data.User
+
 import scala.io._
 import com.tools.Authenticator.{login, logout, register}
+import com.menus.AddEmployee.add_menu
+import com.menus.EmployeeLookup.lookup_menu
+import com.menus.EditInfo.edit_menu
 
 object ProjectZero {
   var isLoggedIn = false
@@ -10,8 +14,9 @@ object ProjectZero {
   def welcome_screen(): Unit = {
     println(s"${AnsiColor.BOLD}Welcome to HR Hero${AnsiColor.RESET}\n")
 
-    for(i <- 0 to 20)
-    {print("*")}
+    for(i <- 0 to 20) {
+      print("*")
+    }
 
     println("\nSign In or Create an Account\n1.) Login\n2.) New User")
     val selection = StdIn.readLine()
@@ -45,15 +50,29 @@ object ProjectZero {
         |""".stripMargin
 
     println(menu)
-    println("What would you like to do.")
+    println("What would you like to do?")
     val selection = StdIn.readLine()
+
+    val router = selection match {
+      case "1" => add_menu()
+      case "2" => lookup_menu()
+      case "3" => edit_menu()
+      case "4" => welcome_screen()
+      case _ => menu_selection()
+    }
+
+    router
   }
 
   def main(args: Array[String]): Unit = {
-    welcome_screen()
+    /*welcome_screen()
 
     if(isLoggedIn) {
       menu_selection()
     }
+    else {
+      welcome_screen()
+    }*/
+    lookup_menu()
   }
 }

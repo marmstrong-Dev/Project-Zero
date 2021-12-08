@@ -8,6 +8,7 @@ import com.data.User
 
 // Used to Handle Authentication and Authorization of Users
 object Authenticator {
+  // Create New User
   def register(): Unit = {
     var uInfo = new Array[String](5)
 
@@ -32,10 +33,11 @@ object Authenticator {
     }
   }
 
+  // Authenticate User
   def login(): User = {
     println("Please Log In\n")
 
-    println("Enter Username")
+    println("Enter Email Address")
     var userName = readLine()
     println("Enter Password")
     var userPass = readLine()
@@ -44,7 +46,6 @@ object Authenticator {
     loginCandidate.lookup_user()
 
     return loginCandidate
-    // println(s"\nCandidate Name: ${userName}")
   }
 
   def logout(): Unit = {

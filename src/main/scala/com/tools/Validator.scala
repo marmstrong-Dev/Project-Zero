@@ -16,6 +16,18 @@ object Validator {
     return isValid
   }
 
+  def check_int_validity(numCheck: String): Boolean = {
+    var isValid = true
+
+    for(i <- 0 until numCheck.length) {
+      if(!numCheck(i).isDigit) {
+        isValid = false
+      }
+    }
+
+    return isValid
+  }
+
   def check_for_nulls(strs: Array[String]): Boolean = {
     var isValid = true
 
@@ -39,6 +51,22 @@ object Validator {
     }
     else {
       errorMsg = "Invalid Email Address"
+    }
+
+    return isValid
+  }
+
+  def validate_phone(pNum: String): Boolean = {
+    var isValid = false
+
+    val stripDashes = pNum.replace("-","")
+    val trimmedNum = stripDashes.forall(_.isDigit)
+
+    if(pNum.length == 12 && trimmedNum && stripDashes.length == 10) {
+      isValid = true
+    }
+    else {
+      errorMsg = "Invalid Phone Number"
     }
 
     return isValid

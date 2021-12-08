@@ -18,4 +18,8 @@ class Note(
   def edit_note(): Unit = {
 
   }
+
+  def del_note(): Unit ={
+
+  }
 }
