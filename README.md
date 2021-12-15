@@ -18,5 +18,6 @@ This will be a tool to allow for the creation of employee records. It will also 
 
 ### Tech Stack Used
 - Scala 2.13.7
-- MySQL
+- OpenJDK 1.8.0_301
+- MySQL 8.0.26
 - sbt
