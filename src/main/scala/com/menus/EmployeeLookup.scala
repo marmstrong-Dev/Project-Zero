@@ -42,6 +42,7 @@ object EmployeeLookup {
 
       if(lookupEmployee.employeeId == 0){
         println("Employee Not Found")
+        readLine()
         return
       }
 
@@ -137,7 +138,7 @@ object EmployeeLookup {
     editBuffer += readLine()
     println("Enter Email Address")
     editBuffer += readLine()
-    println("Enter Phone Number")
+    println("Enter Phone Number (xxx-xxx-xxxx)")
     editBuffer += readLine()
 
     val deptList = new Department()
@@ -175,6 +176,7 @@ object EmployeeLookup {
     }
     else {
       println(errorMsg)
+      readLine()
     }
   }
 

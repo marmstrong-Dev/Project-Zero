@@ -1,7 +1,7 @@
 package com.menus
 
 import com.data.User
-import com.tools.Validator.{validate_email, check_password, errorMsg}
+import com.tools.Validator.{check_for_nulls, check_password, errorMsg, validate_email}
 import scala.io.StdIn.readLine
 
 object EditInfo {
@@ -40,11 +40,18 @@ object EditInfo {
     println("\nPlease Enter Last Name:")
     val lName = readLine()
 
-    candidateUser.userFirstName = fName
-    candidateUser.userLastName = lName
-    candidateUser.edit_user()
+    if(check_for_nulls(Array[String](fName, lName))) {
+      candidateUser.userFirstName = fName
+      candidateUser.userLastName = lName
+      candidateUser.edit_user()
 
-    println("\nUser Info Changed")
+      println("\nUser Info Changed")
+      readLine()
+    }
+    else {
+      println("Both Fields Required")
+      readLine()
+    }
   }
 
   def update_email(): Unit ={
@@ -56,9 +63,11 @@ object EditInfo {
       candidateUser.edit_user()
 
       println("\nEmail Address Updated")
+      readLine()
     }
     else {
       println(errorMsg)
+      readLine()
     }
   }
 
@@ -73,9 +82,11 @@ object EditInfo {
       candidateUser.edit_user()
 
       println("\nPassword Reset Successful")
+      readLine()
     }
     else {
       println(errorMsg)
+      readLine()
     }
   }
 }
