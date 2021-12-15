@@ -1,8 +1,6 @@
 package com.tools
 
 import scala.io.StdIn._
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import com.tools.Validator._
 import com.data.User
 
@@ -10,6 +8,7 @@ import com.data.User
 object Authenticator {
   // Create New User
   def register(): Unit = {
+    print("\u001b[H")
     var uInfo = new Array[String](5)
 
     println("Please Enter First Name:")
@@ -23,7 +22,10 @@ object Authenticator {
     println("Please Confirm Password:")
     uInfo(4) = readLine()
 
-    if(check_password(uInfo(3), uInfo(4)) && check_for_nulls(uInfo) && validate_email(uInfo(2))) {
+    if(check_if_exists(uInfo(2), uInfo(3))
+      && check_password(uInfo(3), uInfo(4))
+      && check_for_nulls(uInfo)
+      && validate_email(uInfo(2))) {
       var candidateUser = new User(0, uInfo(0), uInfo(1), uInfo(2), uInfo(3))
 
       candidateUser.add_user()
@@ -31,6 +33,7 @@ object Authenticator {
     else {
       println(Validator.errorMsg)
     }
+    readLine()
   }
 
   // Authenticate User
@@ -48,12 +51,9 @@ object Authenticator {
     return loginCandidate
   }
 
+  // Logout And Kill Application
   def logout(): Unit = {
     println("Goodbye")
     System.exit(0)
-  }
-
-  def auth_switch(): Unit = {
-
   }
 }

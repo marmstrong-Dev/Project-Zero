@@ -12,13 +12,14 @@ object ProjectZero {
 
   // Produces Welcome Banner and Project Info
   def welcome_screen(): Unit = {
+    print("\u001b[H")
     println(s"${AnsiColor.BOLD}Welcome to HR Hero${AnsiColor.RESET}\n")
 
     for(i <- 0 to 20) {
       print("*")
     }
 
-    println("\nSign In or Create an Account\n1.) Login\n2.) New User")
+    println("\n\nSign In or Create an Account\n1.) Login\n2.) New User\n3.) Exit")
     val selection = StdIn.readLine()
 
     if(selection == "1") {
@@ -32,7 +33,10 @@ object ProjectZero {
       }
     }
     else if(selection == "2") {
-      println("Register Method")
+      register()
+    }
+    else if(selection == "3") {
+      logout()
     }
     else {
       println("Invalid Selection")
@@ -41,9 +45,10 @@ object ProjectZero {
 
   // Gets Menu Selection and Routes Accordingly
   def menu_selection(): Unit = {
-    var menu =
+    print("\u001b[H")
+    val menu =
       """
-        |1. ) Add Employee
+        |1. ) Add Employee or Department
         |2. ) Lookup Employee
         |3. ) Edit My Info
         |4. ) Logout and Exit
@@ -65,13 +70,12 @@ object ProjectZero {
   }
 
   def main(args: Array[String]): Unit = {
-    welcome_screen()
-
-    if(isLoggedIn) {
-      menu_selection()
-    }
-    else {
+    while(!isLoggedIn) {
       welcome_screen()
+    }
+
+    while(isLoggedIn) {
+      menu_selection()
     }
   }
 }

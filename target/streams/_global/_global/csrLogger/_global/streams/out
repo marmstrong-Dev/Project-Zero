@@ -1,8 +1,4 @@
-[debug] downloaded https://repo1.maven.org/maven2/com/github/t3hnar/scala-bcrypt_2.13/4.1/scala-bcrypt_2.13-4.1.pom
-[debug] downloaded https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4.1/jBCrypt-0.4.1.pom
-[debug] downloaded https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4.1/jBCrypt-0.4.1.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/github/t3hnar/scala-bcrypt_2.13/4.1/scala-bcrypt_2.13-4.1.jar
-[debug] downloaded https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4.1/jBCrypt-0.4.1-javadoc.jar
-[debug] downloaded https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4.1/jBCrypt-0.4.1-sources.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/github/t3hnar/scala-bcrypt_2.13/4.1/scala-bcrypt_2.13-4.1-sources.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/github/t3hnar/scala-bcrypt_2.13/4.1/scala-bcrypt_2.13-4.1-javadoc.jar
+[debug] downloaded https://repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.13/1.5.7/compiler-bridge_2.13-1.5.7.pom
+[debug] downloaded https://repo1.maven.org/maven2/org/scala-sbt/util-interface/1.5.0/util-interface-1.5.0.pom
+[debug] downloaded https://repo1.maven.org/maven2/org/scala-sbt/util-interface/1.5.0/util-interface-1.5.0.jar
+[debug] downloaded https://repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.13/1.5.7/compiler-bridge_2.13-1.5.7-sources.jar

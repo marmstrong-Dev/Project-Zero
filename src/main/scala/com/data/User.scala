@@ -47,8 +47,6 @@ class User (
     } catch {
       case e: SQLException => e.printStackTrace()
     }
-
-
   }
 
   def add_user(): Unit = {
@@ -96,7 +94,22 @@ class User (
     }
   }
 
-  def del_user(): Unit = {
+  def find_user(): Unit = {
+    try {
+      val con: Connection = DriverManager.getConnection(dbUrl, username, password)
+      val statement = con.createStatement()
+      val findUserQuery = statement.executeQuery(s"SELECT * FROM Users WHERE user_email_address = '${this.userEmailAddress}';")
 
+      while(findUserQuery.next()) {
+        this.userId = findUserQuery.getInt("user_id")
+        this.userEmailAddress = findUserQuery.getString("user_email_address")
+        this.userFirstName = findUserQuery.getString("user_first_name")
+        this.userFirstName = findUserQuery.getString("user_last_name")
+      }
+
+      con.close()
+    } catch {
+      case e: SQLException => e.printStackTrace()
+    }
   }
 }

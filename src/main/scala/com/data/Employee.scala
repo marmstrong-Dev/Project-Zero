@@ -9,14 +9,16 @@ class Employee (
                var employeeFirstName: String,
                var employeeLastName: String,
                var employeeEmailAddress: String,
-               var employeePhoneNum: String ) {
+               var employeePhoneNum: String,
+               var employeeDepartment: Int) {
 
   def this(employeeFirstName: String, employeeLastName: String) = {
-    this(0, employeeFirstName, employeeLastName, "", "")
+    this(0, employeeFirstName, employeeLastName, "", "", 0)
   }
 
-  def this() = {this(0, "", "", "", "")}
+  def this() = {this(0, "", "", "", "", 0)}
 
+  // Add Employee Record to DB
   def add_employee(): Unit = {
     try {
       val con: Connection = DriverManager.getConnection(dbUrl, username, password)
@@ -28,12 +30,14 @@ class Employee (
         employee_first_name,
         employee_last_name,
         employee_email_address,
-        employee_phone_number)
+        employee_phone_number,
+        employee_department)
       VALUES (
         "${this.employeeFirstName}",
         "${this.employeeLastName}",
         "${this.employeeEmailAddress}",
-        "${this.employeePhoneNum}"
+        "${this.employeePhoneNum}",
+        ${this.employeeDepartment}
       );""")
 
       println("New Employee Created")
@@ -43,6 +47,7 @@ class Employee (
     }
   }
 
+  // Retrieves Single Employee Record
   def get_employee(lookupId: Int): Unit = {
     try {
       val con: Connection = DriverManager.getConnection(dbUrl, username, password)
@@ -55,6 +60,7 @@ class Employee (
         this.employeeLastName = lookupAllQuery.getString("employee_last_name")
         this.employeeEmailAddress = lookupAllQuery.getString("employee_email_address")
         this.employeePhoneNum = lookupAllQuery.getString("employee_phone_number")
+        this.employeeDepartment = lookupAllQuery.getInt("employee_department")
       }
 
       con.close()
@@ -63,6 +69,7 @@ class Employee (
     }
   }
 
+  // Get List of Employees
   def get_all_employees(): Unit = {
     try {
       val con: Connection = DriverManager.getConnection(dbUrl, username, password)
@@ -82,6 +89,7 @@ class Employee (
     }
   }
 
+  // Modify Single Employee Record
   def edit_employee(): Unit = {
     try {
       val con: Connection = DriverManager.getConnection(dbUrl, username, password)
@@ -92,7 +100,8 @@ class Employee (
           employee_first_name = "${this.employeeFirstName}",
           employee_last_name = "${this.employeeLastName}",
           employee_email_address = "${this.employeeEmailAddress}",
-          employee_phone_number = "${this.employeePhoneNum}"
+          employee_phone_number = "${this.employeePhoneNum}",
+          employee_department = ${this.employeeDepartment}
         WHERE employee_id = ${this.employeeId};
         """)
 
@@ -102,7 +111,12 @@ class Employee (
     }
   }
 
+  // Delete Employee From DB - Also Deletes Attached Notes
   def del_employee(): Unit = {
+    val attachedNotes = new Note()
+    attachedNotes.noteEmployee = this.employeeId
+    attachedNotes.del_all_notes()
+
     try {
       val con: Connection = DriverManager.getConnection(dbUrl, username, password)
       val statement = con.createStatement()

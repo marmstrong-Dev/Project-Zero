@@ -8,6 +8,7 @@ object EditInfo {
   var candidateUser = new User()
 
   def edit_menu(modUser: User): Unit = {
+    print("\u001b[H")
     println(s"User ID: ${modUser.userId}")
     println(s"User Name: ${modUser.userFirstName} ${modUser.userLastName}")
     println(s"User Email Address: ${modUser.userEmailAddress}")
@@ -20,6 +21,7 @@ object EditInfo {
         |1.) Update Name
         |2.) Update Email Address
         |3.) Reset Password
+        |Press Any Other Key To Return to Menu
         |""".stripMargin)
 
     val option = readLine()

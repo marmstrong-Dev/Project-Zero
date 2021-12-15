@@ -12,3 +12,4 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "com.github.t3hnar" %% "scala-bcrypt" % "4.1"
 libraryDependencies += "mysql" % "mysql-connector-java" % "8.0.25"
+libraryDependencies += "com.fasterxml.jackson.core" % "jackson-core" % "2.13.0"

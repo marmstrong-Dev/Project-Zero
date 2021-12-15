@@ -1,5 +1,7 @@
 package com.tools
 
+import com.data.{Department, User}
+
 object Validator {
   var errorMsg = ""
 
@@ -7,7 +9,7 @@ object Validator {
     var isValid = false
 
     if(s1 == s2) {
-      if(s1.length <= 8) {
+      if(s1.length >= 8) {
         isValid = true
       }
       else {
@@ -41,7 +43,7 @@ object Validator {
         isValid = false
       }
       else {
-        errorMsg = "Please Fill All Fields"
+        errorMsg = "Please Fill In All Fields"
       }
     }
 
@@ -56,6 +58,38 @@ object Validator {
     }
     else {
       errorMsg = "Invalid Email Address"
+    }
+
+    return isValid
+  }
+
+  def check_if_exists(checkingEmail: String, pass: String): Boolean ={
+    var isValid = true
+
+    val lookupUser = new User(checkingEmail, pass)
+    lookupUser.find_user()
+
+    if(lookupUser.userId != 0) {
+      isValid = false
+      errorMsg = "User Account Already Exists"
+    }
+
+    return isValid
+  }
+
+  def check_department(empId: Int): Boolean ={
+    var isValid = true
+
+    val deptChecker = new Department()
+    val checkList = deptChecker.get_department_supervisors()
+
+    for(i <- 0 until checkList.length) {
+      if(checkList(i) == empId) {
+        isValid = false
+      }
+      else {
+        errorMsg = "Invalid Supervisor Selection"
+      }
     }
 
     return isValid
